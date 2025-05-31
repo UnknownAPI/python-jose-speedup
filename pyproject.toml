@@ -2,6 +2,9 @@
 requires = ["setuptools >= 39.2.0", "wheel >= 0.29.0"]
 build-backend = 'setuptools.build_meta'
 
+[project]
+name = "python-jose-speedup"
+version = "0.1.0"
 
 # TODO: move configuration to setup.cfg when available
 [tool.isort]
