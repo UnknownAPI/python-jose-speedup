@@ -13,7 +13,7 @@ authors = [
     { name = "Michael Davis" }
 ]
 keywords = ["jose", "jws", "jwe", "jwt", "json", "web", "token", "security", "signing"]
-dynamic = ["classifiers", "dependencies", "urls"]
+dynamic = ["classifiers", "dependencies"]
 
 [project.optional-dependencies]
 speedups = ["pybase64"]
