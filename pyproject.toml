@@ -1,12 +1,31 @@
 [build-system]
-requires = ["setuptools >= 39.2.0", "wheel >= 0.29.0"]
-build-backend = 'setuptools.build_meta'
+requires = ["setuptools>=39.2.0", "wheel>=0.29.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "python-jose-speedup"
 version = "0.1.0"
+description = "JOSE implementation in Python with performance optimizations"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Michael Davis" }
+]
+keywords = ["jose", "jws", "jwe", "jwt", "json", "web", "token", "security", "signing"]
+dynamic = ["classifiers", "dependencies", "urls"]
 
-# TODO: move configuration to setup.cfg when available
+[project.optional-dependencies]
+speedups = ["pybase64"]
+cryptography = ["cryptography>=3.2.0"]
+pycryptodome = ["pycryptodome>=3.3.1"]
+
+[project.urls]
+Documentation = "https://python-jose.readthedocs.io/en/latest/"
+Source = "https://github.com/mpdavis/python-jose/"
+Tracker = "https://github.com/mpdavis/python-jose/issues/"
+Changelog = "https://github.com/mpdavis/python-jose/blob/master/CHANGELOG.md"
+
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true
@@ -15,11 +34,6 @@ use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 120
 
-
 [tool.black]
 line-length = 120
 target-version = ["py311", "py312", "py313"]
-
-
-[project.optional-dependencies]
-speedups = ["pybase64"]
