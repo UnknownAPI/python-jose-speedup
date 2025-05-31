@@ -1,4 +1,6 @@
-pycryptodome
-rsa
+pycryptodome~=3.23.0
+rsa~=4.9.1
 ecdsa != 0.15
-pyasn1
+pyasn1~=0.6.1
+
+pybase64~=1.4.1
