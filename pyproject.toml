@@ -16,3 +16,7 @@ line_length = 120
 [tool.black]
 line-length = 120
 target-version = ["py311", "py312", "py313"]
+
+
+[project.optional-dependencies]
+speedups = ["pybase64"]
