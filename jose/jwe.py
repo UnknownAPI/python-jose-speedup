@@ -1,5 +1,5 @@
 import binascii
-import json
+import orjson as json
 import zlib
 from collections.abc import Mapping
 from struct import pack
@@ -356,9 +356,8 @@ def _encoded_header(alg, enc, zip, cty, kid):
         header["kid"] = kid
     json_header = json.dumps(
         header,
-        separators=(",", ":"),
-        sort_keys=True,
-    ).encode("utf-8")
+        option=json.OPT_SORT_KEYS
+    )
     return base64url_encode(json_header)
 
 

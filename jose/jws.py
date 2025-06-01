@@ -1,5 +1,5 @@
 import binascii
-import json
+import orjson as json
 
 try:
     from collections.abc import Iterable, Mapping
@@ -137,9 +137,8 @@ def _encode_header(algorithm, additional_headers=None):
 
     json_header = json.dumps(
         header,
-        separators=(",", ":"),
-        sort_keys=True,
-    ).encode("utf-8")
+        option=json.OPT_SORT_KEYS
+    )
 
     return base64url_encode(json_header)
 
@@ -149,8 +148,8 @@ def _encode_payload(payload):
         try:
             payload = json.dumps(
                 payload,
-                separators=(",", ":"),
-            ).encode("utf-8")
+                option=json.OPT_SORT_KEYS
+            )
         except ValueError:
             pass
 
@@ -186,7 +185,7 @@ def _load(jwt):
         raise JWSError("Invalid header padding")
 
     try:
-        header = json.loads(header_data.decode("utf-8"))
+        header = json.loads(header_data)
     except ValueError as e:
         raise JWSError("Invalid header string: %s" % e)
 
@@ -223,7 +222,7 @@ def _get_keys(key):
         return (key,)
 
     try:
-        key = json.loads(key, parse_int=str, parse_float=str)
+        key = json.loads(key)
     except Exception:
         pass
 
