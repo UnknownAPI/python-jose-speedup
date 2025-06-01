@@ -1,4 +1,4 @@
-import json
+import orjson as json
 from calendar import timegm
 from datetime import datetime, timedelta
 
@@ -164,7 +164,7 @@ def decode(token, key, algorithms=None, options=None, audience=None, issuer=None
     algorithm = jws.get_unverified_header(token)["alg"]
 
     try:
-        claims = json.loads(payload.decode("utf-8"))
+        claims = json.loads(payload)
     except ValueError as e:
         raise JWTError("Invalid payload string: %s" % e)
 
@@ -240,7 +240,7 @@ def get_unverified_claims(token):
         raise JWTError("Error decoding token claims.")
 
     try:
-        claims = json.loads(claims.decode("utf-8"))
+        claims = json.loads(claims)
     except ValueError as e:
         raise JWTError("Invalid claims string: %s" % e)
 
